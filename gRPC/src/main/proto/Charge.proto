@@ -1,0 +1,53 @@
+syntax = "proto3";
+// python3 -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./Charge.proto
+option java_multiple_files = true;
+option java_package = "com.hw2.grpc.lib";
+option java_outer_classname = "ChargeProto";
+
+service Charger {
+  // GET
+  rpc GetChargeById (IdRequest) returns (StringReply) {}
+  rpc GetChargeByDate (DateRequest) returns (stream StringReply) {}
+  rpc GetChargeByGenre (GenreRequest) returns (stream StringReply) {}
+  rpc CurrentCostSum (AllRequest) returns (CostReply) {}
+  rpc GetChargeAll (AllRequest) returns (stream StringReply) {}
+  // POST
+  rpc PostCharge (ChargeRequest) returns (StringReply) {}
+  // PUT
+  rpc PutCharge (ChargeRequest) returns (StringReply) {}
+  // PATCH
+  rpc PatchCharge (ChargeRequest) returns (StringReply) {}
+  // DELETE
+  rpc DeleteChargeById (IdRequest) returns (StringReply) {}
+  rpc DeleteChargeAll (AllRequest) returns (StringReply) {}
+}
+
+message IdRequest {
+  int32 idx = 1;
+}
+
+message DateRequest {
+  string date = 1;
+}
+
+message GenreRequest {
+  string genre = 1;
+}
+
+message ChargeRequest {
+  int32 idx = 1;
+  int64 cost = 2;
+  string genre = 3;
+  string date = 4;
+  string description = 5;
+}
+
+message AllRequest {}
+
+message CostReply {
+  int64 cost = 1;
+}
+
+message StringReply {
+  string message = 1;
+}

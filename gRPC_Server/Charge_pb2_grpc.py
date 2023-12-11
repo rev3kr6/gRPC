@@ -17,53 +17,53 @@ class ChargerStub(object):
         """
         self.GetChargeById = channel.unary_unary(
                 '/Charger/GetChargeById',
-                request_serializer=Charge__pb2.ChargeRequest.SerializeToString,
-                response_deserializer=Charge__pb2.GetChargeReply.FromString,
+                request_serializer=Charge__pb2.IdRequest.SerializeToString,
+                response_deserializer=Charge__pb2.StringReply.FromString,
                 )
         self.GetChargeByDate = channel.unary_stream(
                 '/Charger/GetChargeByDate',
-                request_serializer=Charge__pb2.ChargeRequest.SerializeToString,
-                response_deserializer=Charge__pb2.GetChargeReply.FromString,
+                request_serializer=Charge__pb2.DateRequest.SerializeToString,
+                response_deserializer=Charge__pb2.StringReply.FromString,
                 )
         self.GetChargeByGenre = channel.unary_stream(
                 '/Charger/GetChargeByGenre',
-                request_serializer=Charge__pb2.ChargeRequest.SerializeToString,
-                response_deserializer=Charge__pb2.GetChargeReply.FromString,
+                request_serializer=Charge__pb2.GenreRequest.SerializeToString,
+                response_deserializer=Charge__pb2.StringReply.FromString,
                 )
         self.CurrentCostSum = channel.unary_unary(
                 '/Charger/CurrentCostSum',
-                request_serializer=Charge__pb2.ChargeRequest.SerializeToString,
-                response_deserializer=Charge__pb2.GetCostReply.FromString,
+                request_serializer=Charge__pb2.AllRequest.SerializeToString,
+                response_deserializer=Charge__pb2.CostReply.FromString,
                 )
         self.GetChargeAll = channel.unary_stream(
                 '/Charger/GetChargeAll',
-                request_serializer=Charge__pb2.ChargeRequest.SerializeToString,
-                response_deserializer=Charge__pb2.GetChargeReply.FromString,
+                request_serializer=Charge__pb2.AllRequest.SerializeToString,
+                response_deserializer=Charge__pb2.StringReply.FromString,
                 )
         self.PostCharge = channel.unary_unary(
                 '/Charger/PostCharge',
                 request_serializer=Charge__pb2.ChargeRequest.SerializeToString,
-                response_deserializer=Charge__pb2.GetMessageReply.FromString,
+                response_deserializer=Charge__pb2.StringReply.FromString,
                 )
         self.PutCharge = channel.unary_unary(
                 '/Charger/PutCharge',
                 request_serializer=Charge__pb2.ChargeRequest.SerializeToString,
-                response_deserializer=Charge__pb2.GetMessageReply.FromString,
+                response_deserializer=Charge__pb2.StringReply.FromString,
                 )
         self.PatchCharge = channel.unary_unary(
                 '/Charger/PatchCharge',
                 request_serializer=Charge__pb2.ChargeRequest.SerializeToString,
-                response_deserializer=Charge__pb2.GetMessageReply.FromString,
+                response_deserializer=Charge__pb2.StringReply.FromString,
                 )
         self.DeleteChargeById = channel.unary_unary(
                 '/Charger/DeleteChargeById',
                 request_serializer=Charge__pb2.ChargeRequest.SerializeToString,
-                response_deserializer=Charge__pb2.GetMessageReply.FromString,
+                response_deserializer=Charge__pb2.StringReply.FromString,
                 )
         self.DeleteChargeAll = channel.unary_unary(
                 '/Charger/DeleteChargeAll',
                 request_serializer=Charge__pb2.ChargeRequest.SerializeToString,
-                response_deserializer=Charge__pb2.GetMessageReply.FromString,
+                response_deserializer=Charge__pb2.StringReply.FromString,
                 )
 
 
@@ -141,53 +141,53 @@ def add_ChargerServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'GetChargeById': grpc.unary_unary_rpc_method_handler(
                     servicer.GetChargeById,
-                    request_deserializer=Charge__pb2.ChargeRequest.FromString,
-                    response_serializer=Charge__pb2.GetChargeReply.SerializeToString,
+                    request_deserializer=Charge__pb2.IdRequest.FromString,
+                    response_serializer=Charge__pb2.StringReply.SerializeToString,
             ),
             'GetChargeByDate': grpc.unary_stream_rpc_method_handler(
                     servicer.GetChargeByDate,
-                    request_deserializer=Charge__pb2.ChargeRequest.FromString,
-                    response_serializer=Charge__pb2.GetChargeReply.SerializeToString,
+                    request_deserializer=Charge__pb2.DateRequest.FromString,
+                    response_serializer=Charge__pb2.StringReply.SerializeToString,
             ),
             'GetChargeByGenre': grpc.unary_stream_rpc_method_handler(
                     servicer.GetChargeByGenre,
-                    request_deserializer=Charge__pb2.ChargeRequest.FromString,
-                    response_serializer=Charge__pb2.GetChargeReply.SerializeToString,
+                    request_deserializer=Charge__pb2.GenreRequest.FromString,
+                    response_serializer=Charge__pb2.StringReply.SerializeToString,
             ),
             'CurrentCostSum': grpc.unary_unary_rpc_method_handler(
                     servicer.CurrentCostSum,
-                    request_deserializer=Charge__pb2.ChargeRequest.FromString,
-                    response_serializer=Charge__pb2.GetCostReply.SerializeToString,
+                    request_deserializer=Charge__pb2.AllRequest.FromString,
+                    response_serializer=Charge__pb2.CostReply.SerializeToString,
             ),
             'GetChargeAll': grpc.unary_stream_rpc_method_handler(
                     servicer.GetChargeAll,
-                    request_deserializer=Charge__pb2.ChargeRequest.FromString,
-                    response_serializer=Charge__pb2.GetChargeReply.SerializeToString,
+                    request_deserializer=Charge__pb2.AllRequest.FromString,
+                    response_serializer=Charge__pb2.StringReply.SerializeToString,
             ),
             'PostCharge': grpc.unary_unary_rpc_method_handler(
                     servicer.PostCharge,
                     request_deserializer=Charge__pb2.ChargeRequest.FromString,
-                    response_serializer=Charge__pb2.GetMessageReply.SerializeToString,
+                    response_serializer=Charge__pb2.StringReply.SerializeToString,
             ),
             'PutCharge': grpc.unary_unary_rpc_method_handler(
                     servicer.PutCharge,
                     request_deserializer=Charge__pb2.ChargeRequest.FromString,
-                    response_serializer=Charge__pb2.GetMessageReply.SerializeToString,
+                    response_serializer=Charge__pb2.StringReply.SerializeToString,
             ),
             'PatchCharge': grpc.unary_unary_rpc_method_handler(
                     servicer.PatchCharge,
                     request_deserializer=Charge__pb2.ChargeRequest.FromString,
-                    response_serializer=Charge__pb2.GetMessageReply.SerializeToString,
+                    response_serializer=Charge__pb2.StringReply.SerializeToString,
             ),
             'DeleteChargeById': grpc.unary_unary_rpc_method_handler(
                     servicer.DeleteChargeById,
                     request_deserializer=Charge__pb2.ChargeRequest.FromString,
-                    response_serializer=Charge__pb2.GetMessageReply.SerializeToString,
+                    response_serializer=Charge__pb2.StringReply.SerializeToString,
             ),
             'DeleteChargeAll': grpc.unary_unary_rpc_method_handler(
                     servicer.DeleteChargeAll,
                     request_deserializer=Charge__pb2.ChargeRequest.FromString,
-                    response_serializer=Charge__pb2.GetMessageReply.SerializeToString,
+                    response_serializer=Charge__pb2.StringReply.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -212,8 +212,8 @@ class Charger(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Charger/GetChargeById',
-            Charge__pb2.ChargeRequest.SerializeToString,
-            Charge__pb2.GetChargeReply.FromString,
+            Charge__pb2.IdRequest.SerializeToString,
+            Charge__pb2.StringReply.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -229,8 +229,8 @@ class Charger(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_stream(request, target, '/Charger/GetChargeByDate',
-            Charge__pb2.ChargeRequest.SerializeToString,
-            Charge__pb2.GetChargeReply.FromString,
+            Charge__pb2.DateRequest.SerializeToString,
+            Charge__pb2.StringReply.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -246,8 +246,8 @@ class Charger(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_stream(request, target, '/Charger/GetChargeByGenre',
-            Charge__pb2.ChargeRequest.SerializeToString,
-            Charge__pb2.GetChargeReply.FromString,
+            Charge__pb2.GenreRequest.SerializeToString,
+            Charge__pb2.StringReply.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -263,8 +263,8 @@ class Charger(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Charger/CurrentCostSum',
-            Charge__pb2.ChargeRequest.SerializeToString,
-            Charge__pb2.GetCostReply.FromString,
+            Charge__pb2.AllRequest.SerializeToString,
+            Charge__pb2.CostReply.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -280,8 +280,8 @@ class Charger(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_stream(request, target, '/Charger/GetChargeAll',
-            Charge__pb2.ChargeRequest.SerializeToString,
-            Charge__pb2.GetChargeReply.FromString,
+            Charge__pb2.AllRequest.SerializeToString,
+            Charge__pb2.StringReply.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -298,7 +298,7 @@ class Charger(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Charger/PostCharge',
             Charge__pb2.ChargeRequest.SerializeToString,
-            Charge__pb2.GetMessageReply.FromString,
+            Charge__pb2.StringReply.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -315,7 +315,7 @@ class Charger(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Charger/PutCharge',
             Charge__pb2.ChargeRequest.SerializeToString,
-            Charge__pb2.GetMessageReply.FromString,
+            Charge__pb2.StringReply.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -332,7 +332,7 @@ class Charger(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Charger/PatchCharge',
             Charge__pb2.ChargeRequest.SerializeToString,
-            Charge__pb2.GetMessageReply.FromString,
+            Charge__pb2.StringReply.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -349,7 +349,7 @@ class Charger(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Charger/DeleteChargeById',
             Charge__pb2.ChargeRequest.SerializeToString,
-            Charge__pb2.GetMessageReply.FromString,
+            Charge__pb2.StringReply.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -366,6 +366,6 @@ class Charger(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/Charger/DeleteChargeAll',
             Charge__pb2.ChargeRequest.SerializeToString,
-            Charge__pb2.GetMessageReply.FromString,
+            Charge__pb2.StringReply.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

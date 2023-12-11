@@ -2,42 +2,48 @@ syntax = "proto3";
 // python3 -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./Charge.proto
 service Charger {
     // GET
-    rpc GetChargeById (ChargeRequest) returns (GetChargeReply) {}
-    rpc GetChargeByDate (ChargeRequest) returns (stream GetChargeReply) {}
-    rpc GetChargeByGenre (ChargeRequest) returns (stream GetChargeReply) {}
-    rpc CurrentCostSum (ChargeRequest) returns (GetCostReply) {}
-    rpc GetChargeAll (ChargeRequest) returns (stream GetChargeReply) {}
+    rpc GetChargeById (IdRequest) returns (StringReply) {}
+    rpc GetChargeByDate (DateRequest) returns (stream StringReply) {}
+    rpc GetChargeByGenre (GenreRequest) returns (stream StringReply) {}
+    rpc CurrentCostSum (AllRequest) returns (CostReply) {}
+    rpc GetChargeAll (AllRequest) returns (stream StringReply) {}
     // POST
-    rpc PostCharge (ChargeRequest) returns (GetMessageReply) {}
+    rpc PostCharge (ChargeRequest) returns (StringReply) {}
     // PUT
-    rpc PutCharge (ChargeRequest) returns (GetMessageReply) {}
+    rpc PutCharge (ChargeRequest) returns (StringReply) {}
     // PATCH
-    rpc PatchCharge (ChargeRequest) returns (GetMessageReply) {}
+    rpc PatchCharge (ChargeRequest) returns (StringReply) {}
     // DELETE
-    rpc DeleteChargeById (ChargeRequest) returns (GetMessageReply) {}
-    rpc DeleteChargeAll (ChargeRequest) returns (GetMessageReply) {}
+    rpc DeleteChargeById (ChargeRequest) returns (StringReply) {}
+    rpc DeleteChargeAll (ChargeRequest) returns (StringReply) {}
 }
 
-message Charge {
-    int32 id = 1;
+message IdRequest {
+    int32 idx = 1;
+}
+
+message DateRequest {
+    string date = 1;
+}
+
+message GenreRequest {
+    string genre = 1;
+}
+
+message ChargeRequest {
+    int32 idx = 1;
     int64 cost = 2;
     string genre = 3;
     string date = 4;
     string description = 5;
 }
 
-message ChargeRequest {
-    Charge charge = 1;
-}
+message AllRequest {}
 
-message GetChargeReply {
-    Charge charge = 1;
-}
-
-message GetMessageReply {
-    string message = 1;
-}
-
-message GetCostReply {
+message CostReply {
     int64 cost = 1;
+}
+
+message StringReply {
+    string message = 1;
 }

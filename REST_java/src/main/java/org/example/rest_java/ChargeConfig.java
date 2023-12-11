@@ -1,4 +1,4 @@
-package org.example.grpc_client;
+package org.example.rest_java;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
