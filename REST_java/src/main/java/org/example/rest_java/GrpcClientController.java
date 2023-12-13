@@ -2,8 +2,9 @@ package org.example.rest_java;
 import io.grpc.ManagedChannel;
 import com.hw2.grpc.lib.*;
 import org.springframework.web.bind.annotation.*;
+import io.grpc.StatusRuntimeException;
+
 @RestController
-@RequestMapping("/charge")
 public class GrpcClientController {
 
     private final ChargerGrpc.ChargerBlockingStub chargerStub;
@@ -13,7 +14,7 @@ public class GrpcClientController {
         chargerStub = ChargerGrpc.newBlockingStub(managedChannel);
     }
 
-    @GetMapping(value="/get/{idx}")
+    @GetMapping(value="/getIdx/{idx}")
     public String getChargeById(@PathVariable(name = "idx") int idx) {
         StringReply stringReply = chargerStub.getChargeById(
                 IdRequest.newBuilder()
@@ -23,7 +24,7 @@ public class GrpcClientController {
         return stringReply.getMessage();
     }
 
-    @GetMapping(value="/get/{genre}")
+    @GetMapping(value="/getGenre/{genre}")
     public String getChargeByGenre(@PathVariable(name = "genre") String genre) {
         sb = new StringBuilder();
         GenreRequest genreRequest = GenreRequest.newBuilder()
@@ -35,7 +36,7 @@ public class GrpcClientController {
         return sb.toString();
     }
 
-    @GetMapping(value="/get/{date}")
+    @GetMapping(value="/getDate/{date}")
     public String getChargeByDate(@PathVariable(name = "date") String date) {
         sb = new StringBuilder();
         DateRequest dateRequest = DateRequest.newBuilder()
@@ -109,7 +110,7 @@ public class GrpcClientController {
         return stringReply.getMessage();
     }
 
-    @DeleteMapping(value="/delete/{idx}", consumes = "application/json")
+    @DeleteMapping(value="/delete/{idx}")
     public String deleteChargeById(@PathVariable(name = "idx") int idx) {
         StringReply stringReply = chargerStub.deleteChargeById(
                 IdRequest.newBuilder()
@@ -119,12 +120,27 @@ public class GrpcClientController {
         return stringReply.getMessage();
     }
 
-    @PutMapping(value="/delete/all", consumes = "application/json")
+    @DeleteMapping(value="/delete")
     public String deleteChargeAll() {
         StringReply stringReply = chargerStub.deleteChargeAll(
                 AllRequest.newBuilder()
                         .build()
         );
         return stringReply.getMessage();
+    }
+
+    @ExceptionHandler(Exception.class)
+    public String handleException(Exception e) {
+        return "Error occured! Please retry.\n" + e.getMessage() + "\n";
+    }
+
+    @ExceptionHandler(StatusRuntimeException.class)
+    public String handleStatusRuntimeException(StatusRuntimeException e) {
+        return "gRPC StatusRuntimeException occured! Plesae retry.\n" + e.getStatus().getDescription() + "\n";
+    }
+
+    @ExceptionHandler(Throwable.class)
+    public String handleThrowable(Throwable t) {
+        return "Unexpected error occurred! Please retry.\n" + t.getMessage() + "\n";
     }
 }
